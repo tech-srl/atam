@@ -1,0 +1,1 @@
+gcc -fno-stack-protector overflow2.c
