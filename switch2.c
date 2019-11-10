@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void func(int key) {
+void func(long key) {
   switch(key) {
     case 0: 
       printf("the");

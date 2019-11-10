@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 int func(int count) {
-	int i =0;
 	for(int i=0;i<count;i++) {
 		printf(i);
 	}
