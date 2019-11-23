@@ -1,4 +1,4 @@
-static int y; 
+int y; 
 
 int f() { 
   return y+1; 

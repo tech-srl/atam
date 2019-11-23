@@ -1,1 +1,1 @@
-static int y = 41; 
+int y = 41; 
