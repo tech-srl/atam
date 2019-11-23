@@ -4,6 +4,6 @@ int f() {
   return y+1; 
 } 
 
-void main() { 
+int main() { 
 	return f();
 }
