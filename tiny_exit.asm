@@ -4,5 +4,6 @@
   GLOBAL _start
   SECTION .text
   _start:
-    push    dword 42
-    call    _exit
+    mov    rax, 60
+    mov    rdi, 42
+    syscall
