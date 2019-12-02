@@ -1,0 +1,64 @@
+ld -dynamic-linker /lib64/ld-linux-x86-64.so.2 \
+  /usr/lib/x86_64-linux-gnu/crt1.o \
+  /usr/lib/x86_64-linux-gnu/crti.o \
+  -L/usr/lib/gcc/x86_64-linux-gnu/7/ \
+  -lc \
+  hello.o \
+  /usr/lib/x86_64-linux-gnu/crtn.o
+
+
+
+  ld -dynamic-linker /lib64/ld-linux-x86-64.so.2 \
+  /usr/lib/x86_64-linux-gnu/crt1.o \
+  /usr/lib/x86_64-linux-gnu/crti.o \
+  -L/usr/lib/gcc/x86_64-linux-gnu/7/ \
+  -lc \
+  le1-1.o le1-2.o \
+  /usr/lib/x86_64-linux-gnu/crtn.o
+
+
+  ld -dynamic-linker /lib64/ld-linux-x86-64.so.2 \
+  /usr/lib/x86_64-linux-gnu/crt1.o \
+  /usr/lib/x86_64-linux-gnu/crti.o \
+  -L/usr/lib/gcc/x86_64-linux-gnu/7/ \
+  -lc \
+  le1-2.o le1-1.o \
+  /usr/lib/x86_64-linux-gnu/crtn.o
+
+ld -dynamic-linker /lib64/ld-linux-x86-64.so.2 \
+  /usr/lib/x86_64-linux-gnu/crt1.o \
+  /usr/lib/x86_64-linux-gnu/crti.o \
+  -L/usr/lib/gcc/x86_64-linux-gnu/7/ \
+  -lc \
+  le1-1.o \
+  /usr/lib/x86_64-linux-gnu/crtn.o
+
+
+
+  ld -dynamic-linker /lib64/ld-linux-x86-64.so.2 \
+  /usr/lib/x86_64-linux-gnu/crt1.o \
+  /usr/lib/x86_64-linux-gnu/crti.o \
+  -L/usr/lib/gcc/x86_64-linux-gnu/7/ \
+  -lc \
+  le1-1.o le1-2.o le1-3.o \
+  /usr/lib/x86_64-linux-gnu/crtn.o
+
+
+  ld \
+  /usr/lib/x86_64-linux-gnu/crt1.o \
+  /usr/lib/x86_64-linux-gnu/crti.o \
+  -lc \
+  le1-1.o le1-2.o \
+  /usr/lib/x86_64-linux-gnu/crtn.o
+
+
+
+ld -static \
+  /usr/lib/x86_64-linux-gnu/crt1.o \
+  /usr/lib/x86_64-linux-gnu/crti.o \
+  -L/usr/lib/gcc/x86_64-linux-gnu/7/ \
+  -lc \
+  le1-1.o le1-2.o  \
+  /usr/lib/x86_64-linux-gnu/crtn.o \
+  /usr/lib/x86_64-linux-gnu/libc.a 
+
