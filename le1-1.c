@@ -4,4 +4,5 @@ int g() {
 }
 int main() { 
   int x = g(); 
+  return x; 
 } 
