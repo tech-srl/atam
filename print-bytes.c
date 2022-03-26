@@ -5,7 +5,7 @@ int main() {
 	unsigned char *p = (unsigned char*)(&x);
 	for (int i = 0; i < sizeof (x); i++)
 	{
-		printf ("%x ", *p++);
+		printf("%x ", *p++);
 	}
 	return 0;
 }
