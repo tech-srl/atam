@@ -1,72 +1,57 @@
-	.section	__TEXT,__text,regular,pure_instructions
-	.build_version macos, 10, 15	sdk_version 10, 15
-	.globl	_lt                     ## -- Begin function lt
-	.p2align	4, 0x90
-_lt:                                    ## @lt
+	.file	"lt-condition.c"
+	.text
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.LC0:
+	.string	"x is LT Y"
+.LC1:
+	.string	"x is GTE Y"
+	.text
+	.globl	lt
+	.type	lt, @function
+lt:
+.LFB23:
 	.cfi_startproc
-## %bb.0:
-	pushq	%rbp
+	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	subq	$32, %rsp
-	movl	%edi, -8(%rbp)
-	movl	%esi, -12(%rbp)
-	movl	-8(%rbp), %esi
-	cmpl	-12(%rbp), %esi
-	jge	LBB0_2
-## %bb.1:
-	leaq	L_.str(%rip), %rdi
-	movb	$0, %al
-	callq	_printf
-	movl	$1, -4(%rbp)
-	movl	%eax, -16(%rbp)         ## 4-byte Spill
-	jmp	LBB0_3
-LBB0_2:
-	leaq	L_.str.1(%rip), %rdi
-	movb	$0, %al
-	callq	_printf
-	movl	$0, -4(%rbp)
-	movl	%eax, -20(%rbp)         ## 4-byte Spill
-LBB0_3:
-	movl	-4(%rbp), %eax
-	addq	$32, %rsp
-	popq	%rbp
-	retq
+	cmpl	%esi, %edi
+	jl	.L5
+	leaq	.LC1(%rip), %rsi
+	movl	$1, %edi
+	movl	$0, %eax
+	call	__printf_chk@PLT
+	movl	$0, %eax
+.L1:
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	ret
+.L5:
+	.cfi_restore_state
+	leaq	.LC0(%rip), %rsi
+	movl	$1, %edi
+	movl	$0, %eax
+	call	__printf_chk@PLT
+	movl	$1, %eax
+	jmp	.L1
 	.cfi_endproc
-                                        ## -- End function
-	.globl	_main                   ## -- Begin function main
-	.p2align	4, 0x90
-_main:                                  ## @main
+.LFE23:
+	.size	lt, .-lt
+	.globl	main
+	.type	main, @function
+main:
+.LFB24:
 	.cfi_startproc
-## %bb.0:
-	pushq	%rbp
+	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	subq	$16, %rsp
-	movl	$0, -4(%rbp)
-	movl	$42, -8(%rbp)
-	movl	$73, -12(%rbp)
-	movl	-8(%rbp), %edi
-	movl	-12(%rbp), %esi
-	callq	_lt
-	xorl	%esi, %esi
-	movl	%eax, -16(%rbp)         ## 4-byte Spill
-	movl	%esi, %eax
-	addq	$16, %rsp
-	popq	%rbp
-	retq
+	movl	$73, %esi
+	movl	$42, %edi
+	call	lt
+	movl	$0, %eax
+	addq	$8, %rsp
+	.cfi_def_cfa_offset 8
+	ret
 	.cfi_endproc
-                                        ## -- End function
-	.section	__TEXT,__cstring,cstring_literals
-L_.str:                                 ## @.str
-	.asciz	"x is LT Y"
-
-L_.str.1:                               ## @.str.1
-	.asciz	"x is GTE Y"
-
-
-.subsections_via_symbols
+.LFE24:
+	.size	main, .-main
+	.ident	"GCC: (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0"
+	.section	.note.GNU-stack,"",@progbits

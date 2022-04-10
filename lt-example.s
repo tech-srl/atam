@@ -1,50 +1,51 @@
-	.section	__TEXT,__text,regular,pure_instructions
-	.build_version macos, 10, 15	sdk_version 10, 15
-	.globl	_lt                     ## -- Begin function lt
-	.p2align	4, 0x90
-_lt:                                    ## @lt
+	.file	"lt-example.c"
+	.text
+	.globl	lt
+	.type	lt, @function
+lt:
+.LFB0:
 	.cfi_startproc
-## %bb.0:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
+	.cfi_offset 6, -16
 	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	movl	%edi, -4(%rbp)       # first parameter -> x (local of lt)
-	movl	%esi, -8(%rbp)       # second parameter -> y (local of lt)
-	movl	-4(%rbp), %esi       # mov x into esi so we can compare 
-	cmpl	-8(%rbp), %esi       # cmp y (from stack) to x in esi 
-	setl	%al                  # get result from EFLAGS sign into AL
-	andb	$1, %al              # 
-	movzbl	%al, %eax            # zero extend EAX 
+	.cfi_def_cfa_register 6
+	movl	%edi, -4(%rbp)
+	movl	%esi, -8(%rbp)
+	movl	-4(%rbp), %eax
+	cmpl	-8(%rbp), %eax
+	setl	%al
+	movzbl	%al, %eax
 	popq	%rbp
-	retq
+	.cfi_def_cfa 7, 8
+	ret
 	.cfi_endproc
-                                        ## -- End function
-	.globl	_main                   ## -- Begin function main
-	.p2align	4, 0x90
-_main:                                  ## @main
+.LFE0:
+	.size	lt, .-lt
+	.globl	main
+	.type	main, @function
+main:
+.LFB1:
 	.cfi_startproc
-## %bb.0:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
+	.cfi_offset 6, -16
 	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
+	.cfi_def_cfa_register 6
 	subq	$16, %rsp
-	movl	$0, -4(%rbp)
-	movl	$42, -8(%rbp)          # 42 -> a (local of main) 
-	movl	$73, -12(%rbp)         # 73 -> b (local of main)
-	movl	-8(%rbp), %edi         # a -> edi, first parameter 
-	movl	-12(%rbp), %esi        # b -> esi, second parameter
-	callq	_lt
-	xorl	%esi, %esi
-	movl	%eax, -16(%rbp)         ## 4-byte Spill
-	movl	%esi, %eax
-	addq	$16, %rsp
-	popq	%rbp
-	retq
+	movl	$42, -8(%rbp)
+	movl	$73, -4(%rbp)
+	movl	-4(%rbp), %edx
+	movl	-8(%rbp), %eax
+	movl	%edx, %esi
+	movl	%eax, %edi
+	call	lt
+	movl	$0, %eax
+	leave
+	.cfi_def_cfa 7, 8
+	ret
 	.cfi_endproc
-                                        ## -- End function
-
-.subsections_via_symbols
+.LFE1:
+	.size	main, .-main
+	.ident	"GCC: (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0"
+	.section	.note.GNU-stack,"",@progbits
